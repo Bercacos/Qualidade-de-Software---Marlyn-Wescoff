@@ -8,14 +8,14 @@
 **Disciplina:** FGA0315 — Qualidade de Software 1  
 **Período:** 2º/2026  
 **Docente:** Profa. Cristiane Soares Ramos  
-**Versão:** 1.0  
+**Versão:** 1.2  
 **Última atualização:** 19/10/2026  
 
-**Integrantes:** Bernardo Broetto Brun
-                 Pedro Rocha
-                 Cadu Motta
-                 João Pedro Maciel
-                 Maykson Soares
+**Integrantes:** Bernardo Broetto Brun,
+                 Pedro Rocha,
+                 Cadu Motta,
+                 João Pedro Maciel,
+                 Maykson Soares.
 
 ## Resumo
 
@@ -156,22 +156,24 @@ flowchart TD
 
 ### 4.5 Dependências e restrições
 
-Os requisitos de PHP, banco de dados e extensões deverão ser confirmados na documentação da versão efetivamente instalada.
+A configuração abaixo é uma **proposta de ambiente de referência**, e não um registro de instalação já realizada. A documentação oficial do Moodle 5.3 informa PHP mínimo 8.3 de 64 bits, suporte a PHP 8.4, extensão sodium e `max_input_vars >= 5000`. Para PostgreSQL, exige versão 17 ou superior. A atualização para 5.3 parte de Moodle 4.4 ou posterior [Moodle 5.3](https://moodledev.io/general/releases/5.3).
 
-Antes da execução, a equipe deverá registrar:
+| Informação | Configuração proposta | Confirmação necessária |
+|---|---|---|
+| Versão do Moodle | 5.3 LTS, com atualização corretiva disponível na preparação | Registrar versão exata e identificador de build após instalar |
+| Sistema operacional | Ubuntu Server 24.04 LTS de 64 bits, em máquina virtual de laboratório | Confirmar disponibilidade e recursos do computador |
+| Servidor web | Apache HTTP Server 2.4 | Registrar versão e configuração efetivamente utilizadas |
+| Versão do PHP | Série 8.3 de 64 bits, com sodium e extensões exigidas pelo instalador | Registrar versão corretiva e resultado da checagem de ambiente |
+| Banco de dados e versão | PostgreSQL 17 | Registrar versão corretiva e parâmetros de conexão sem credenciais |
+| Tema | Boost, distribuído com o Moodle | Confirmar ativação e ausência de personalizações |
+| Recursos e plugins habilitados | Tarefa, Questionário, Fórum, Arquivo e Notas, distribuídos com o produto; sem plugins de terceiros | Exportar ou registrar a lista efetiva de componentes habilitados |
+| Forma de instalação | Instalação manual em máquina virtual local, com banco e moodledata próprios | Registrar os comandos, a origem do código e as etapas realizadas |
 
-| Informação | Registro |
-|---|---|
-| Versão do Moodle | [Preencher] |
-| Sistema operacional | [Preencher] |
-| Servidor web | [Preencher] |
-| Versão do PHP | [Preencher] |
-| Banco de dados e versão | [Preencher] |
-| Tema | [Preencher] |
-| Recursos e plugins habilitados | [Preencher] |
-| Forma de instalação | [Preencher] |
+O diretório `moodledata` deverá ficar fora da área pública do servidor web. As tarefas agendadas serão configuradas conforme a documentação da versão. O instalador deverá confirmar o atendimento aos requisitos antes de qualquer teste.
 
-A avaliação não utilizará dados acadêmicos reais.
+A alternativa Moodle 4.5 LTS exige nova verificação dos requisitos; a equipe não deverá aplicar automaticamente os requisitos de 5.3 à versão alternativa.
+
+A avaliação utilizará contas e dados fictícios. A configuração proposta não permite afirmar que o ambiente foi instalado, validado ou testado.
 
 ### 4.6 Implicações para a avaliação
 
@@ -336,6 +338,39 @@ A adoção de plugins pode ampliar a cobertura funcional e, ao mesmo tempo, aume
 
 Essa relação é uma hipótese para estudos posteriores. O escopo principal não permitirá concluir sobre plugins de terceiros em geral.
 
+### 6.6 Memória de cálculo e conferência
+
+As pontuações são somas ponderadas das notas R, K, V e A:
+
+- **Base:** `0,35R + 0,25K + 0,25V + 0,15A`.
+- **Viabilidade maior:** `0,25R + 0,20K + 0,40V + 0,15A`.
+- **Relevância maior:** `0,50R + 0,20K + 0,15V + 0,15A`.
+- **Elegibilidade:** `V >= 3 e R >= 2`, aplicada antes da seleção.
+
+Exemplo para flexibilidade, com R = 4, K = 3, V = 4 e A = 4:
+
+| Cenário | Cálculo | Resultado |
+|---|---|---:|
+| Base | 0,35 × 4 + 0,25 × 3 + 0,25 × 4 + 0,15 × 4 | 3,75 |
+| Viabilidade maior | 0,25 × 4 + 0,20 × 3 + 0,40 × 4 + 0,15 × 4 | 3,80 |
+| Relevância maior | 0,50 × 4 + 0,20 × 3 + 0,15 × 4 + 0,15 × 4 | 3,80 |
+
+*Fonte: elaboração própria.*
+
+A conferência aritmética reproduziu as 24 pontuações da Tabela 6. Os três conjuntos de pesos somam 1,00. A ordem entre as candidatas elegíveis é a mesma nos três cenários. Isso verifica os cálculos, mas não valida os julgamentos que originaram as notas.
+
+Para tornar a atribuição de notas reproduzível, a equipe deverá usar as seguintes âncoras:
+
+| Nota | Relevância | Impacto da falha | Viabilidade | Alinhamento às decisões |
+|---|---|---|---|---|
+| 1 | Sem necessidade identificada no cenário | Consequência desprezível no recorte | Sem recursos disponíveis | Sem relação com D1–D4 |
+| 2 | Relação indireta com necessidades | Consequência restrita | Exige recursos ainda indisponíveis | Relação indireta |
+| 3 | Atende necessidade identificada | Compromete parte de uma tarefa | Executável com preparação relevante | Apoia parcialmente uma decisão |
+| 4 | Atende necessidade prioritária | Compromete tarefa importante | Executável com recursos planejados | Apoia diretamente uma decisão |
+| 5 | Central às necessidades prioritárias | Impede tarefa essencial ou compromete resultado acadêmico | Executável com recursos já disponíveis e procedimento conhecido | É determinante para uma decisão prioritária |
+
+As âncoras são propostas para revisão das notas existentes. Em particular, a viabilidade 5 atribuída à adequação funcional deverá ser reavaliada se o ambiente e os dados de teste ainda não estiverem disponíveis.
+
 ## 7 Escopo e profundidade da avaliação
 
 ### 7.1 Objetos
@@ -378,7 +413,23 @@ As fases seguintes deverão detalhar os dados de teste, ambientes, ferramentas, 
 
 *Fonte: elaboração própria.*
 
-### 7.4 Limites de validade
+### 7.4 Recorte operacional proposto
+
+Para limitar o esforço, o estudo adotará os seguintes objetos de referência:
+
+| Eixo | Recorte inicial | Evidência esperada nas próximas fases |
+|---|---|---|
+| Adequação funcional | Abrir material, enviar tarefa, responder questionário, publicar em fórum e consultar nota | Roteiro, entradas conhecidas, resultado esperado e observado |
+| Interoperabilidade | Importação de usuários fictícios por CSV e exportação de notas por CSV | Arquivos de entrada e saída e comparação dos dados |
+| Coexistência | Moodle e uma página estática de laboratório no mesmo servidor Apache | Verificação de que os dois serviços continuam acessíveis durante as operações definidas |
+| Adaptabilidade | Windows com Chrome e Firefox; Android com Chrome | Versões, dispositivos e resultado dos mesmos fluxos essenciais |
+| Instalabilidade | Instalação limpa e atualização de uma cópia de teste 4.5 para 5.3, caso a versão-alvo seja mantida | Logs, verificações de ambiente e confirmação dos dados e fluxos após atualização |
+
+A página estática de coexistência é um recurso de laboratório proposto; não é uma funcionalidade adicional do sistema avaliado. O teste não demonstrará ausência de interferência sob carga.
+
+LTI, SCORM e aplicativo móvel não serão compromissos obrigatórios deste recorte. Caso sejam incluídos, a equipe deverá ampliar o plano e justificar os recursos necessários. As versões corretivas e os dispositivos efetivamente disponíveis serão registrados antes da execução.
+
+### 7.5 Limites de validade
 
 Os resultados valerão para a versão, a configuração e os ambientes efetivamente testados.
 
@@ -445,31 +496,43 @@ As limitações deverão acompanhar os resultados finais.
 
 A elaboração deste documento contou com apoio de ferramentas de inteligência artificial:
 
-- **Claude, da Anthropic:** apoio ao rascunho original, à organização das seções, aos diagramas e à proposta da matriz de decisão.
-- **ChatGPT, da OpenAI:** apoio à revisão crítica e à adaptação do conteúdo para publicação no GitHub Pages.
-
-A equipe deverá verificar as fontes, validar as notas atribuídas e confirmar se o escopo proposto corresponde ao trabalho que será executado.
-
-**Responsáveis pela revisão humana:** [Preencher]  
-**Data da revisão:** [Preencher]  
-**Ajustes confirmados pela equipe:** [Preencher]
-
-A declaração deverá ser atualizada para refletir apenas as ferramentas e atividades efetivamente utilizadas.
+- Para pesquisa, para revisão de texto e formatação.
 
 ## 11 Repositório e rastreabilidade
 
-| Recurso | Endereço |
+| Recurso | Endereço ou situação |
 |---|---|
-| Repositório | [Inserir link] |
-| GitHub Pages | [Inserir link] |
-| Release da Fase 1 | [Inserir link] |
-| Relatório em PDF | [Inserir link] |
-| Memória de cálculo da matriz | [Inserir link, quando disponível] |
-| Evidências das próximas fases | [Inserir link, quando disponíveis] |
+| Repositório  | [Bercacos/Qualidade-de-Software---Marlyn-Wescoff](https://github.com/Bercacos/Qualidade-de-Software---Marlyn-Wescoff) |
+| GitHub Pages  | [Site do projeto](https://bercacos.github.io/Qualidade-de-Software---Marlyn-Wescoff/) |
+| Release da Fase 1 | Pendente de criação e publicação. |
+| Relatório em PDF | Arquivo disponível à equipe, mas publicação no repositório não confirmada. Caminho sugerido após upload: `documentos/fase1_moodle.pdf` |
+| Memória de cálculo da matriz | [Seção 6.6 deste relatório](#66-memória-de-cálculo-e-conferência) |
+| Evidências das próximas fases | Ainda não produzidas; serão vinculadas após execução e anonimização |
 
-A memória de cálculo deverá permitir reproduzir os valores da Tabela 6.
+### 11.1 Controle documental
 
-A página deverá ser atualizada a cada entrega, mantendo a correspondência entre relatório, release, métricas e evidências.
+Esta versão 1.2 contém o planejamento e a conferência da matriz. Não contém resultados empíricos dos testes.
+
+A release deverá associar a mesma versão do relatório, a página e seus anexos. O PDF anterior não deverá ser apresentado como equivalente a esta versão sem atualizar seu conteúdo.
+
+### 11.2 Checklist de publicação e revisão
+
+| Item | Situação neste documento | Próxima ação |
+|---|---|---|
+| Propósito, decisores e uso pretendido | Descritos nas seções 2 e 3 | Validar com o grupo |
+| Descrição e contexto do produto | Descritos na seção 4 | Confirmar ambiente instalado |
+| Modelo adaptado e representação gráfica | Incluídos na seção 5 | Conferir renderização dos diagramas no site |
+| Priorização e memória de cálculo | Incluídas na seção 6 | Validar notas e âncoras com a equipe |
+| Escopo e limites | Descritos na seção 7 | Confirmar viabilidade do recorte |
+| ODS e indicadores locais | Descritos na seção 8 | Formalizar métricas na fase seguinte |
+| Uso de IA | Declarado na seção 10 | Concluir revisão humana |
+| Links do repositório e do site | Endereços propostos, sem confirmação externa | Abrir e verificar no navegador |
+| Release e PDF atualizado | Publicação não confirmada | Criar release e anexar documento correspondente |
+| Evidências | Não produzidas nesta fase | Executar os testes previstos nas próximas fases |
+
+### 11.3 Registro da revisão por pares
+
+Ainda não concluída.
 
 ## 12 Referências
 
@@ -492,4 +555,19 @@ A página deverá ser atualizada a cada entrega, mantendo a correspondência ent
 ---
 
 **Grupo Marlyn Wescoff — Qualidade de Software 1 — UnB**  
-**Versão 1.0 — Atualizado em 19/10/2026**
+**Versão 1.2 — Atualizado em 19/10/2026**
+
+<!-- Inicialização dos diagramas no GitHub Pages. Requer acesso à CDN e JavaScript habilitado. -->
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+document.querySelectorAll('pre > code.language-mermaid').forEach(code => {
+  const diagram = document.createElement('div');
+  diagram.className = 'mermaid';
+  diagram.textContent = code.textContent;
+  code.parentElement.replaceWith(diagram);
+});
+mermaid.initialize({ startOnLoad: false, securityLevel: 'strict' });
+await mermaid.run({ querySelector: '.mermaid' });
+</script>
+
+
